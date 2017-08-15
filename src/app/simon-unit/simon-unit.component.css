@@ -1,0 +1,37 @@
+.square {
+  width: 50px;
+  height: 50px;
+  align-content: center;
+}
+
+.simon-red {
+  background-color: red;
+}
+
+.simon-green {
+  background-color: #11a400;
+}
+
+.simon-blue {
+  background-color: blue;
+}
+
+.simon-yellow {
+  background-color: yellow;
+}
+
+.simon-red-pressed {
+  background-color: #910000;
+}
+
+.simon-green-pressed {
+  background-color: #005300;
+}
+
+.simon-blue-pressed {
+  background-color: #000085;
+}
+
+.simon-yellow-pressed {
+  background-color: #99a200;
+}

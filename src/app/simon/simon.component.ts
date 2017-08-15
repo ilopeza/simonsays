@@ -17,12 +17,19 @@ export class SimonComponent implements OnInit {
   constructor(private numberGeneratorService: NumberGeneratorService) { }
 
   ngOnInit() {
+    this.level = 4;
   }
 
   start(): void {
+    this.randomNumbers = [];
     this.randomNumbers = this.numberGeneratorService.generateNumbers(this.level);
-    this.pressedId = window.setInterval(() => {
-    }, 1000);
+    for (let i = 0; i < this.randomNumbers.length; i++) {
+      // this.pressedId = this.randomNumbers[i];
+      // setTimeout(1000);
+      setTimeout(() => {
+        this.pressedId = this.randomNumbers[i];
+      }, 1000);
+    }
   }
 
 
