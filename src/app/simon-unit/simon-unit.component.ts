@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-simon-unit',
@@ -7,9 +7,10 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class SimonUnitComponent implements OnInit {
   @Input() id: number;
+  @Input() disabled: boolean;
+  @Output() onPressed = new EventEmitter<number>();
   pressed: boolean;
   classInactive: string;
-  classPressed: string;
 
   constructor() {
   }
@@ -17,30 +18,38 @@ export class SimonUnitComponent implements OnInit {
   ngOnInit() {
     this.pressed = false;
     switch (this.id) {
-      case 1:
+      case 0:
         this.classInactive = 'simon-red';
-        this.classPressed = 'simon-red-pressed';
+        break;
+      case 1:
+        this.classInactive = 'simon-green';
         break;
       case 2:
-        this.classInactive = 'simon-green';
-        this.classPressed = 'simon-green-pressed';
+        this.classInactive = 'simon-blue';
         break;
       case 3:
-        this.classInactive = 'simon-blue';
-        this.classPressed = 'simon-blue-pressed';
-        break;
-      case 4:
         this.classInactive = 'simon-yellow';
-        this.classPressed = 'simon-yellow-pressed';
         break;
     }
   }
 
-  press(): void {
+  press() {
+    if(this.disabled){
+      alert('Los botones están deshabilitados. Empiece un juego nuevo presionando el Start.');
+      return;
+    }
+    this.changeState(this.id);
+    this.onPressed.emit(this.id);
+  }
+
+  changeState(pressedId: number): void {
+    if (pressedId !== this.id) {
+      return;
+    }
+    this.pressed = true;
     setTimeout(() => {
-      this.pressed = true;
+      this.pressed = false;
     }, 500);
-    this.pressed = false;
   }
 
 }

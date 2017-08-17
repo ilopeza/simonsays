@@ -1,3 +1,7 @@
-<div class="square {{classInactive}}">
+<div class="square {{ classInactive }}"
+     [class.active]="!disabled && pressed"
+     [class.inactive] = "!disabled && !pressed"
+     [class.disabled] = "disabled"
+     (click)="press()">
   <span> {{id}} </span>
 </div>
